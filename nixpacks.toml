@@ -3,9 +3,9 @@ nixPkgs = ["dotnet-sdk_8"]
 
 [phases.build]
 cmds = [
-  "dotnet restore testCICD/testCICD/testCICD.csproj",
-  "dotnet build testCICD/testCICD/testCICD.csproj --no-restore --configuration Release"
+  "dotnet restore ./testCICD/testCICD/testCICD.csproj",
+  "dotnet publish ./testCICD/testCICD/testCICD.csproj -c Release -o out"
 ]
 
 [start]
-cmd = "dotnet testCICD/testCICD/bin/Release/net8.0/testCICD.dll --urls=http://0.0.0.0:$PORT"
+cmd = "dotnet out/testCICD.dll --urls=http://0.0.0.0:$PORT"
